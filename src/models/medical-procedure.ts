@@ -2,6 +2,7 @@ import {
   Table,
   Column,
   Model,
+  DataType
 } from "sequelize-typescript";
 
 @Table({
@@ -18,7 +19,9 @@ class MedicalProcedure extends Model {
   @Column
   procedureDate!: Date;    
 
-  @Column
+  @Column({
+    type: DataType.FLOAT,
+  })
   procedureValue!: number;
 
   @Column

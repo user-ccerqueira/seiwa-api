@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.DATE,
       },    
       procedureValue: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       }, 
       paymentStatus: {
         type: Sequelize.STRING,
