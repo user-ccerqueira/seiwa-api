@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: API Login
+  version: "1.0.0"
+  description: Documentação da API de login com autenticação básica
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    LoginResponse:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+            roles:
+              type: array
+              items:
+                type: string
+        accessToken:
+          type: string
+
+security:
+  - basicAuth: []
+
+paths:
+  /login:
+    post:
+      tags:
+        - Autenticação
+      summary: Login do usuário via Basic Auth
+      security:
+        - basicAuth: []
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "401":
+          description: Não autorizado
+        "500":
+          description: Erro interno

@@ -1,0 +1,55 @@
+{
+  "name": "seiwa-api",
+  "version": "0.0.1",
+  "description": "API Seiwa",
+  "main": "build/index.js",
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "start": "node ./build/index.js",
+    "build": "tsc",
+    "dev": "nodemon",
+    "lint": "eslint src/ --ext .ts",
+    "format": "prettier --write ."
+  },
+  "author": "Seiwa",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.18.7",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.4",
+    "express-correlation-id": "^3.0.1",
+    "express-session": "^1.18.1",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-http": "^0.3.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.5",
+    "sequelize-typescript": "^2.1.6",
+    "speakeasy": "^2.0.0",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^9.0.1",
+    "yamljs": "^0.3.0"
+  }
+}
