@@ -51,7 +51,14 @@ url: http://localhost:1001/docs/
     Data do procedimento
     Valor do procedimento
     Status do pagamento (pago, pendente, glosado)
+ endpoint: medical/create-procedure
+
  Gerar um relatório diário de procedimentos por médico.
+ endpoint: report/daily-procedure-doctor
+
  Gerar um relatório de glosas por período.
+ endpoint: report/glosses-period
+
  Gerar um relatório financeiro por médico.
+ endpoint: report/financial-doctor
 ```
