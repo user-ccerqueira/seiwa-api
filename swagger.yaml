@@ -1,13 +1,19 @@
 openapi: 3.0.0
 info:
-  title: API Login
+  title: API de Procedimentos Médicos
   version: "1.0.0"
-  description: Documentação da API de login com autenticação básica
+  description: API com autenticação via Basic Auth e token Bearer
+
 components:
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
     LoginResponse:
       type: object
@@ -24,15 +30,12 @@ components:
         accessToken:
           type: string
 
-security:
-  - basicAuth: []
-
 paths:
-  /login:
+  /auth/login:
     post:
       tags:
         - Autenticação
-      summary: Login do usuário via Basic Auth
+      summary: Realiza login e retorna token JWT
       security:
         - basicAuth: []
       responses:
@@ -41,8 +44,92 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LoginResponse"
+                $ref: '#/components/schemas/LoginResponse'
         "401":
           description: Não autorizado
         "500":
           description: Erro interno
+
+  /medical/create-procedure:
+    post:
+      tags:
+        - Procedimentos
+      summary: Cria um novo procedimento médico
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId:
+                  type: integer
+                patientId:
+                  type: integer
+                procedureValue:
+                  type: number
+                paymentStatus:
+                  type: string
+                  enum: [pago, pendente, glosado]
+                procedureDate:
+                  type: string
+                  format: date
+      responses:
+        "200":
+          description: Procedimento criado com sucesso
+        "400":
+          description: Erro de validação nos dados enviados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: clientId deve ser um número válido.
+                  code:
+                    type: integer
+                    example: 4001
+        "401":
+          description: Não autorizado
+
+  /report/daily-procedure-doctor:
+    post:
+      tags:
+        - Relatórios
+      summary: Relatório diário por médico
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Dados retornados com sucesso
+        "401":
+          description: Não autorizado
+
+  /report/glosses-period:
+    post:
+      tags:
+        - Relatórios
+      summary: Relatório de glosas por período
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Dados retornados com sucesso
+        "401":
+          description: Não autorizado
+
+  /report/financial-doctor:
+    post:
+      tags:
+        - Relatórios
+      summary: Relatório financeiro por médico
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Dados retornados com sucesso
+        "401":
+          description: Não autorizado

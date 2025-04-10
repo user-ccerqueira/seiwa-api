@@ -1,11 +1,8 @@
-import moment from 'moment';
-import { Op, WhereOptions, Sequelize, FLOAT } from 'sequelize';
+import { Op, Sequelize } from 'sequelize';
 import _ from 'lodash';
-
 import {
   MedicalProcedure
 } from '../models';
-import Log from '../../src/tools/log';
 
 class Dashboard {
   
@@ -68,13 +65,11 @@ class Dashboard {
     const results = await MedicalProcedure.findAll({
       attributes: [
         [Sequelize.literal('"clientId"'), 'cliente'],
-        [Sequelize.fn('DATE', Sequelize.col('"procedureDate"')), 'procedureDate'],
         [Sequelize.fn('SUM', Sequelize.col('"procedureValue"')), 'valor']
       ],
-      group: ['cliente', Sequelize.fn('DATE', Sequelize.col('"procedureDate"'))],
+      group: ['cliente'],
       order: [
-        [Sequelize.literal('"procedureDate"'), 'DESC'],
-        [Sequelize.literal('valor'), 'DESC']
+        [Sequelize.literal('"cliente"'), 'ASC']
       ],
       raw: true,
     });
@@ -83,7 +78,6 @@ class Dashboard {
       .filter((r) => r['cliente'] !== null)
       .map((res) => ({
         cliente: res['cliente'],
-        procedureDate: res['procedureDate'],
         valor: Number(res['valor'])
       }));
   

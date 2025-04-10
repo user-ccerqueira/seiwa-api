@@ -62,8 +62,10 @@ export default (passport) => {
   
       const procedure = await medicalProceduresRepository.createProduct(data, finishTransaction);
   
-      await finishTransaction.commit();
-      res.success(procedure);
+      await finishTransaction.commit();     
+      res.status(201).json({ msg : "Procedimento criado com sucesso!"});;
+      return;
+      
     } catch (err) {
       await finishTransaction.rollback();
       Log.error('/:' + err);
