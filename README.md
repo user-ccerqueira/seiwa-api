@@ -67,8 +67,8 @@ url: http://localhost:1001/docs/
  url: http://localhost:1001/docs/
 
  Explicação de como a API lida com erros e exceções.
- [Canditado]: Em todas as API foram tratados os erros e exceções, na api "medical/create-procedure" foi tratado todos os inputs de entrada.
+ [Candidato]: Em todas as API foram tratados os erros e exceções, na api "medical/create-procedure" foi tratado todos os inputs de entrada.
 
  Explicação de como a API garante a segurança dos dados.
- [Canditado]: Foi criado uma rota de login para autenticação em todas as rotas, com isso garantimos minimamente a segurança dos dados. 
+ [Candidato]: Foi criado uma rota de login para autenticação em todas as rotas, com isso garantimos minimamente a segurança dos dados. 
 ```
