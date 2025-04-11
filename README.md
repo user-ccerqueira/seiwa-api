@@ -7,7 +7,7 @@ API Procedimentos Médicos
 ### Clonar projeto
 
 ```sh
-git clone https://gitlab.com/digital-republic/gfx-api.git
+git clone https://github.com/user-ccerqueira/seiwa-api.git
 ```
 
 ### Create DB
